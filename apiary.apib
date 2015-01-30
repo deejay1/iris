@@ -1,46 +1,83 @@
 FORMAT: 1A
 
 # iris
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+IRIS API Notes - manage communication during the failure
 
-# Group Notes
-Notes related resources of the **Notes API**
 
-## Notes Collection [/notes]
-### List all Notes [GET]
-+ Response 200 (application/json)
-
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
-
-### Create a Note [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
-
+## ServiceData [/service_data/{service_id}]
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + service_id (int) ... ID of the service.
 
-### Retrieve a Note [GET]
+### Retrieve information about specific service from Service Catalogue [GET]
 + Response 200 (application/json)
+    + Body
+        
+            {
+                "owners": {
+                    "technical": "Jan Kowalski",
+                    "business": "Tomasz Czarnecki"
+                }
+            }
 
-    + Header
+## Communication [/communication/{service_id}]
++ Parameters
+    + service_id (int) ... ID of the service.
 
-            X-My-Header: The Value
-
+### Manage new failure [POST]
++ Request (application/json)
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            {
+                "service_id": 123,
+                "date": "2015-01-30T13:01:01Z",
+                "environment": "prod",
+                "metric": "failingmetric"
+            }
 
-### Remove a Note [DELETE]
-+ Response 204
++ Response 201 (application/json)
+    + Body
+    
+            {
+                "detail": "OK"
+            }
+
+### Update current failure [PATCH]
++ Request (application/json)
+    + Body
+
+            {
+                "service_id": 123,
+                "metric": "secondfailingmetric"
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "detail": "OK"
+            }
+
+
+
+
+## Comment [/communication/{service_id}/comment]
++ Parameters
+    + service_id (int) ... ID of the service.
+
+### Send a Comment [POST]
++ Response 201 (application/json)
+    + Body
+
+            {
+                "detail": "OK"
+            }
+
+### Retrieve a Comment [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "date": "2015-01-30T13:05:06Z",
+                "message": "My comment message",
+                "author": "Jan Kowalski"
+            }
