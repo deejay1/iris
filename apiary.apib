@@ -3,6 +3,8 @@ FORMAT: 1A
 # iris
 IRIS API Notes - manage communication during the failure
 
+# Group Service Data
+Proxy endpoint to be used by plugins, instead of calling the Service Catalogue directly.
 
 ## ServiceData [/service_data/{service_id}]
 + Parameters
@@ -102,7 +104,19 @@ New user comment to the communication.
 + Parameters
     + service_id (int) ... ID of the service.
 
++ Model (application/json)
+    + Body
+    
+            {
+                "message": "I am a new user comment to the Communication"
+            }
+
 ### Add a Comment [POST]
+
++ Request
+
+    [Comment][]
+        
 + Response 201 (application/json)
     + Body
 
@@ -111,12 +125,17 @@ New user comment to the communication.
                 "id": 123
             }
 
-### Retrieve a Comment [GET]
+### Retrieve a list of comments [GET]
 + Response 200 (application/json)
     + Body
-
-            {
+            
+            [{
                 "date": "2015-01-30T13:05:06Z",
                 "message": "My comment message",
                 "author": "Jan Kowalski"
-            }
+            },
+            {
+                "date": "2015-01-30T13:05:06Z",
+                "message": "Another comment",
+                "author": "John Doe"
+            }]
