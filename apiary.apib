@@ -16,15 +16,21 @@ IRIS API Notes - manage communication during the failure
                 "owners": {
                     "technical": "Jan Kowalski",
                     "business": "Tomasz Czarnecki"
+                },
+                "jira": {
+                    "queue": "MYQUEUE"
                 }
             }
+
+# Group Communication
+
+Handles communication related actions
 
 ## Communication [/communication/{service_id}]
 + Parameters
     + service_id (int) ... ID of the service.
 
-### Manage new failure [POST]
-+ Request (application/json)
++ Model (application/json)
     + Body
 
             {
@@ -34,6 +40,14 @@ IRIS API Notes - manage communication during the failure
                 "metric": "failingmetric"
             }
 
+
+### Start new communication [POST]
+
+
++ Request
+
+    [Communication][]
+
 + Response 201 (application/json)
     + Body
     
@@ -41,14 +55,10 @@ IRIS API Notes - manage communication during the failure
                 "detail": "OK"
             }
 
-### Update current failure [PATCH]
-+ Request (application/json)
-    + Body
-
-            {
-                "service_id": 123,
-                "metric": "secondfailingmetric"
-            }
+### Update current communication [PATCH]
++ Request
+    
+    [Communication][]
 
 + Response 200 (application/json)
     + Body
@@ -58,13 +68,14 @@ IRIS API Notes - manage communication during the failure
             }
 
 
-
-
 ## Comment [/communication/{service_id}/comment]
+
+New user comment to the communication.
+
 + Parameters
     + service_id (int) ... ID of the service.
 
-### Send a Comment [POST]
+### Add a Comment [POST]
 + Response 201 (application/json)
     + Body
 
