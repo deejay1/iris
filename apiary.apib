@@ -14,8 +14,8 @@ IRIS API Notes - manage communication during the failure
         
             {
                 "owners": {
-                    "technical": ["Jan Kowalski"],
-                    "business": ["Tomasz Czarnecki]"
+                    "technical": [{"name": "Jan Kowalski", "email": "jan.kowalski@domain.pl"}],
+                    "business": [{"name": "Tomasz Czarnecki", "email": "tc@domain.pl"}]
                 },
                 "jira": {
                     "queue": "MYQUEUE"
@@ -53,10 +53,11 @@ Handles communication related actions
     + Body
     
             {
-                "detail": "OK"
+                "detail": "OK",
+                "id": 123
             }
 
-### Update current communication [PATCH]
+### Update current communication [PUT]
 + Request
     
     [Communication][]
@@ -65,7 +66,8 @@ Handles communication related actions
     + Body
 
             {
-                "detail": "OK"
+                "detail": "OK",
+                "id": 123
             }
 
 
@@ -81,7 +83,8 @@ New user comment to the communication.
     + Body
 
             {
-                "detail": "OK"
+                "detail": "OK",
+                "id": 123
             }
 
 ### Retrieve a Comment [GET]
