@@ -27,6 +27,7 @@ IRIS API Notes - manage communication during the failure
 Handles communication related actions
 
 ## Communication [/communication/{service_id}]
+
 + Parameters
     + service_id (int) ... ID of the service.
 
@@ -44,6 +45,11 @@ Handles communication related actions
 
 ### Start new communication [POST]
 
+1. if there's no active communication:
+ * start a new communication
+
+2. if  there's an active communication
+ * return error that a PUT method should be used
 
 + Request
 
@@ -57,7 +63,18 @@ Handles communication related actions
                 "id": 123
             }
 
++ Response 409 (application/json)
+   + Body
+   
+            {
+                "detail": "Communication for service {service_id} is already open. Use PUT to update communication",
+                "id": 123
+            }
+
 ### Update current communication [PUT]
+1. When there is a communication open, update the communication
+2. When there's no communication, return an error that a POST call should be used
+
 + Request
     
     [Communication][]
@@ -70,6 +87,13 @@ Handles communication related actions
                 "id": 123
             }
 
++ Response 405 (application/json)
+   + Body
+   
+            {
+                "detail": "Communication for service {service_id} isn't opened. Use POST to create a new communication",
+                "id": 123
+            }
 
 ## Comment [/communication/{service_id}/comment]
 
