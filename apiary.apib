@@ -16,7 +16,8 @@ The service model has the following attributes:
 - communications - list of emails
 
 + Model
-    Test
+    
+    Service
     
     + Body 
     
@@ -30,6 +31,44 @@ The service model has the following attributes:
                     "bar@example.com",
                     "baz@example.com"
                 ]
+            }
+    
+    + Schema
+    
+            {
+                "type: "object",
+                "title": "Service",
+                "properties": {
+                    "service_id": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Service primary key"
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Service name"
+                    },
+                    "flow_name": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Communication flow name"
+                    },
+                    "flow_value": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Communication flow value"
+                    },
+                    "communications": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "validation": "EmailValidator"
+                        }
+                        "required": true,
+                        "description": "List of emails"
+                    },
+                }
             }
 
 ### Create or Update service [POST]
