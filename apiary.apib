@@ -4,25 +4,52 @@ FORMAT: 1A
 IRIS API Notes - manage communication during the failure
 
 # Group Service Data
-Proxy endpoint to be used by plugins, instead of calling the Service Catalogue directly.
+Proxy endpoint to be used by plugins to update collection of available services, 
+and their communication list.
 
-## ServiceData [/service_data/{service_id}]
-+ Parameters
-    + service_id (int) ... ID of the service.
+## ServiceData [/service_data/]
+The service model has the following attributes:
+- service_id
+- name
+- flow_name
+- flow_value
+- communications - list of emails
 
-### Retrieve information about specific service from Service Catalogue [GET]
-+ Response 200 (application/json)
-    + Body
-        
++ Model
+    Test
+    
+    + Body 
+    
             {
-                "owners": {
-                    "technical": [{"name": "Jan Kowalski", "email": "jan.kowalski@domain.pl"}],
-                    "business": [{"name": "Tomasz Czarnecki", "email": "tc@domain.pl"}]
-                },
-                "jira": {
-                    "queue": "MYQUEUE"
-                }
+                "service_id": 1,
+                "name": "Foo service",
+                "flow_name": "Automatic flow",
+                "flow_value": 1,
+                "communications": [
+                    "foo@example.com",
+                    "bar@example.com",
+                    "baz@example.com"
+                ]
             }
+
+### Create or Update service [POST]
+It update or if service doesn"t exists, create new service.
+
++ Request (application/json)
+        
+        {
+            "service_id": 1,
+            "name": "Foo service",
+            "flow_name": "Automatic flow",
+            "flow_value": 1,
+            "communications": [
+                "foo@example.com",
+                "bar@example.com",
+                "baz@example.com"
+            ]
+        }
+
++ Response 201
 
 # Group Communication
 
