@@ -108,10 +108,8 @@ It update or if service doesn"t exists, create new service.
 
 Handles communication related actions
 
-## Communication [/communication/]
+## Communication [/communications/]
 
-+ Parameters
-    + service_id (int) ... ID of the service.
 
 + Model (application/json)
     + Body
@@ -120,7 +118,7 @@ Handles communication related actions
                 "service_id": 123,
                 "date": "2015-01-30T13:01:01Z",
                 "environment": "prod",
-                "status": "trigger",
+                "status": "trigger|update|resolve",
                 "metric": "failingmetric"
             }
 
@@ -177,12 +175,12 @@ Handles communication related actions
                 "id": 123
             }
 
-## Comment [/communication/{service_id}/comment]
+## Comment [/communications/{pk}/comments]
 
 New user comment to the communication.
 
 + Parameters
-    + service_id (int) ... ID of the service.
+    + pk (int) ... ID of the communication object.
 
 + Model (application/json)
     + Body
