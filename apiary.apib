@@ -13,7 +13,8 @@ The service model has the following attributes:
 - name
 - flow_name
 - flow_value
-- communications - list of emails
+- technical_communication - list of technical emails
+- business_communication - list of business emails
 
 + Model
     
@@ -26,8 +27,10 @@ The service model has the following attributes:
                 "name": "Foo service",
                 "flow_name": "Automatic flow",
                 "flow_value": 1,
-                "communications": [
-                    "foo@example.com",
+                "technical_communication": [
+                    "foo@example.com"
+                ],
+                "business_communication": [
                     "bar@example.com",
                     "baz@example.com"
                 ]
@@ -59,14 +62,23 @@ The service model has the following attributes:
                         "required": true,
                         "description": "Communication flow value"
                     },
-                    "communications": {
+                    "technical_communication": {
                         "type": "array",
                         "items": {
                             "type": "string",
                             "validation": "EmailValidator"
                         }
                         "required": true,
-                        "description": "List of emails"
+                        "description": "List of technical emails"
+                    },
+                    "business_communication": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "validation": "EmailValidator"
+                        }
+                        "required": true,
+                        "description": "List of business emails"
                     },
                 }
             }
@@ -81,8 +93,10 @@ It update or if service doesn"t exists, create new service.
             "name": "Foo service",
             "flow_name": "Automatic flow",
             "flow_value": 1,
-            "communications": [
-                "foo@example.com",
+            "technical_communication": [
+                "foo@example.com"
+            ],
+            "business_communication": [
                 "bar@example.com",
                 "baz@example.com"
             ]
