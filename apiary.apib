@@ -119,7 +119,43 @@ Handles communication related actions
                 "date": "2015-01-30T13:01:01Z",
                 "environment": "prod",
                 "status": "trigger|update|resolve",
-                "metric": "failingmetric"
+                "metric": ["foo.baz", "foo.baz"]
+            }
+    + Schema
+    
+            {
+                "type: "object",
+                "title": "Service",
+                "properties": {
+                    "service_id": {
+                        "type": "integer",
+                        "required": true,
+                        "description": "Service primary key"
+                    },
+                    "date": {
+                        "type": "datetime",
+                        "required": true,
+                        "description": "Date"
+                    },
+                    "environment": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Environment"
+                    },
+                    "status": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Status of communition"
+                    },
+                    "metric": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                        "required": true,
+                        "description": "List of failing metrics"
+                    }
+                }
             }
 
 
