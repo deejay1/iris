@@ -159,7 +159,7 @@ Handles communication related actions
             }
 
 
-### Start new communication [POST]
+### Start new or update communication object [POST]
 
 1. if there's no active communication:
  * start a new communication
@@ -175,41 +175,11 @@ Handles communication related actions
     + Body
     
             {
-                "detail": "OK",
+                "sc_id": 166,
                 "id": 123
             }
 
-+ Response 409 (application/json)
-   + Body
-   
-            {
-                "detail": "Communication for service {service_id} is already open. Use PUT to update communication",
-                "id": 123
-            }
 
-### Update current communication [PUT]
-1. When there is a communication open, update the communication
-2. When there's no communication, return an error that a POST call should be used
-
-+ Request
-    
-    [Communication][]
-
-+ Response 200 (application/json)
-    + Body
-
-            {
-                "detail": "OK",
-                "id": 123
-            }
-
-+ Response 405 (application/json)
-   + Body
-   
-            {
-                "detail": "Communication for service {service_id} isn't opened. Use POST to create a new communication",
-                "id": 123
-            }
 
 ## Comment [/communications/{pk}/comments]
 
