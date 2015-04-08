@@ -115,11 +115,11 @@ Handles communication related actions
     + Body
 
             {
-                "service_id": 123,
+                "sc_id": 123,
                 "date": "2015-01-30T13:01:01Z",
                 "environment": "prod",
                 "status": "trigger|update|resolve",
-                "metric": ["foo.baz", "foo.baz"]
+                "metrics": ["foo.baz", "foo.baz"]
             }
     + Schema
     
@@ -127,7 +127,7 @@ Handles communication related actions
                 "type: "object",
                 "title": "Communication object",
                 "properties": {
-                    "service_id": {
+                    "sc_id": {
                         "type": "integer",
                         "required": true,
                         "description": "Service primary key"
@@ -147,7 +147,7 @@ Handles communication related actions
                         "required": true,
                         "description": "Status of communition"
                     },
-                    "metric": {
+                    "metrics": {
                         "type": "array",
                         "items": {
                             "type": "string"
